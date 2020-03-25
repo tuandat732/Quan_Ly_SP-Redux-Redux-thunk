@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ProductList from '../../components/ProductList/ProductList'
+import {connect} from 'react-redux'
 
 class ProductListPage extends Component {
   render() {
@@ -9,11 +10,17 @@ class ProductListPage extends Component {
         <button type="button" class="btn btn-info mb-10">Thêm sản phẩm</button>
 
 
-        <ProductList/>
+        <ProductList products={this.props.products}/>
 
       </div>
     );
   }
 }
 
-export default ProductListPage;
+const mapStateToProps = (state)=>{
+  return{
+    products:state.products
+  }
+}
+
+export default connect(mapStateToProps,null)(ProductListPage);
