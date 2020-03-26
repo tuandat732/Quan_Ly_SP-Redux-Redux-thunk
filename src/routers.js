@@ -19,7 +19,7 @@ const routers = [
     {
         path:'/product/add',
         exact:false,
-        main:()=><ProductActionPage/>
+        main:({history})=><ProductActionPage history={history}/>
     },
     {
         path:'/product/:id/edit',
