@@ -4,7 +4,7 @@ import ProductItem from '../ProductItem/ProductItem'
 
 class ProductList extends Component {
   render() {
-    const {products}= this.props;
+    const {products}= this.props?this.props:[];
     return (
         <div className="panel panel-primary">
         <div className="panel-heading">
