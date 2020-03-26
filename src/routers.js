@@ -24,7 +24,7 @@ const routers = [
     {
         path:'/product/:id/edit',
         exact:false,
-        main:({match})=><ProductActionPage match={match}/>
+        main:({match,history})=><ProductActionPage history={history} match={match}/>
     },
     {
         path:"",

@@ -8,7 +8,19 @@ class ProductActionPage extends Component {
     id:'',
     name:'',
     price:'',
-    status:'',
+    status:false,
+  }
+
+  componentDidMount(){
+    let {match}= this.props;
+    if(match){
+      const id = match.params.id;
+      callApi(`products/${id}`,"GET",null).then(res=>{
+        this.setState({
+          ...res.data
+        })
+      })
+    }
   }
 
   onChange=(e)=>{
@@ -19,6 +31,13 @@ class ProductActionPage extends Component {
 
   onSave=(e)=>{
     e.preventDefault();
+    if(this.state.id){
+      callApi(`products/${this.state.id}`,"PUT",{
+        ...this.state
+      }).then(()=>{
+        this.props.history.goBack()
+      })
+    }else{
     callApi('products',"POST",{
       name:this.state.name,
       price:this.state.price,
@@ -26,6 +45,7 @@ class ProductActionPage extends Component {
     }).then(res=>{
       this.props.history.goBack()
     })
+  }
   }
 
   render() {
@@ -49,7 +69,7 @@ class ProductActionPage extends Component {
                 <label>Trạng thái: </label>
                 <div className="checkbox">
                   <label>
-                    <input type="checkbox" value="" name='status' value={this.state.status} onChange={this.onChange}/>
+                    <input type="checkbox" checked={this.state.status} name='status' value={this.state.status} onChange={this.onChange}/>
                     Còn hàng
                   </label>
                 </div>
