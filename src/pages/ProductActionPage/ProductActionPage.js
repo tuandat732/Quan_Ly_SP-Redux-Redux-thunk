@@ -55,7 +55,7 @@ class ProductActionPage extends Component {
           <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             
             <form onSubmit={this.onSave}>
-              <legend>Form title</legend>
+            <legend>{this.state.id?"Sửa sản phẩm":"Thêm sản phẩm"}</legend>
             
               <div className="form-group">
                 <label>Tên sản phẩm: </label>
