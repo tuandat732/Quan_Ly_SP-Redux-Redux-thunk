@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import '../../App.css';
+import callApi from '../../utils/apiCaller'
 
 class ProductItem extends Component {
+
+    onDelete=()=>{
+        if(confirm("bạn chắc chắn muốn xóa hay không")){ //eslint-disable-line
+            this.props.onDelete(this.props.product.id)
+        }
+    }
     
     render() {
         const {product,index} = this.props;
@@ -16,7 +23,7 @@ class ProductItem extends Component {
                 </td>
                 <td>
                     <button type="button" className="btn btn-success mr-10">Sửa</button>
-                    <button type="button" className="btn btn-danger">Xóa</button>
+                    <button type="button" className="btn btn-danger" onClick={this.onDelete}>Xóa</button>
                 </td>
             </tr>
         );

@@ -24,7 +24,7 @@ class ProductList extends Component {
               </tr>
             </thead>
             <tbody>
-              {products.map((product,index)=><ProductItem product={product} index={index} key={index}/>)}
+              {products.map((product,index)=><ProductItem product={product} onDelete={this.props.onDelete} index={index} key={index}/>)}
             </tbody>
           </table>
 

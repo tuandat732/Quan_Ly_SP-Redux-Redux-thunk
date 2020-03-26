@@ -11,10 +11,20 @@ class ProductListPage extends Component {
   }
 
   componentDidMount(){
+    this.onFetchProducts()
+  }
+
+  onFetchProducts=()=>{
     callApi('products',"GET",null).then(res=>{
       this.setState({
         products:res.data
       })
+    })
+  }
+
+  onDelete=(id)=>{
+    callApi(`products/${id}`,"DELETE",null).then(res=>{
+      this.onFetchProducts()
     })
   }
 
@@ -24,7 +34,7 @@ class ProductListPage extends Component {
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <Link to='/product/add' className="btn btn-info mb-10">Thêm sản phẩm</Link>
         {/* <ProductList products={this.props.products}/> */}
-        <ProductList products={this.state.products}/>
+        <ProductList products={this.state.products} onDelete={this.onDelete}/>
       </div>
     );
   }
