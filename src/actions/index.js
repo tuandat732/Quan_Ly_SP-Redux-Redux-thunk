@@ -31,3 +31,15 @@ export const actFetchProducts = (products)=>{
     }
 }
 
+export const actDeleteProductRequest = (id)=>(dispatch)=>{
+    return callApi(`products/${id}`,"DELETE",null).then(res=>{
+        dispatch(actDeleteProduct(id))
+    })
+}
+
+export const actDeleteProduct = (id) => {
+    return {
+        type:types.DELETE_PRODUCT,
+        id
+    }
+}

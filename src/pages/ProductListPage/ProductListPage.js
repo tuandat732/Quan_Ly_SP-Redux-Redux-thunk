@@ -18,9 +18,7 @@ class ProductListPage extends Component {
   }
 
   onDelete=(id)=>{
-    callApi(`products/${id}`,"DELETE",null).then(res=>{
-      this.onFetchProducts()
-    })
+   this.props.onDeleteProduct(id)
   }
 
   render() {
@@ -43,7 +41,8 @@ const mapStateToProps = (state)=>{
 
 const mapDispatchToProps = (dispatch,props)=>{
   return{
-    fetchAllProducts:()=>dispatch(actions.actFetchProductsRequest())
+    fetchAllProducts:()=>dispatch(actions.actFetchProductsRequest()),
+    onDeleteProduct:(id)=>dispatch(actions.actDeleteProductRequest(id))
   }
 }
 
