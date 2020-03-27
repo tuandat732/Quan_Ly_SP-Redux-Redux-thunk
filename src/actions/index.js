@@ -44,15 +44,41 @@ export const actDeleteProduct = (id) => {
     }
 }
 
-export const actAddProductRequest = (product)=>(dispatch)=>{
+export const actAddProductRequest = (product)=>(dispatch)=>{ //add product server
     return callApi("products","POST",product).then(res=>{
         dispatch(actAddProduct(res.data))
     })
 }
 
-export const actAddProduct = (product)=>{
+export const actAddProduct = (product)=>{ //add product trên store
     return{
         type:types.ADD_PRODUCT,
+        product
+    }
+}
+
+export const actGetProductRequest = (id)=>(dispatch)=>{
+    return callApi(`products/${id}`,"GET",null).then(res=>{
+        dispatch(actGetProduct(res.data))
+    })
+}
+
+export const actGetProduct = (product)=>{
+    return{
+        type:types.EDIT_PRODUCT,
+        product
+    }
+}
+
+export const actUpdateProductRequest = (product)=>(dispatch)=>{ //update trên server
+    return callApi(`products/${product.id}`,"PUT",product).then(res=>{
+        dispatch(actUpdateProduct(res.data))
+    })
+}
+
+export const actUpdateProduct = (product)=>{ //update trên store redux
+    return{
+        type:types.UPDATE_PRODUCT,
         product
     }
 }
