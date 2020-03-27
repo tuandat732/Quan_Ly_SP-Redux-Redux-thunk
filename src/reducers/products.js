@@ -8,6 +8,8 @@ const reducer = (state=initState,action)=>{
             return action.products
         case types.DELETE_PRODUCT:
             return state.filter(product=>product.id!==action.id)
+        case types.ADD_PRODUCT:
+            return [...state,action.product]
         default:
             return state
     }

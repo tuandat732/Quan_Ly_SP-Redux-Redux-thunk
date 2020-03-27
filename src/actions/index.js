@@ -43,3 +43,16 @@ export const actDeleteProduct = (id) => {
         id
     }
 }
+
+export const actAddProductRequest = (product)=>(dispatch)=>{
+    return callApi("products","POST",product).then(res=>{
+        dispatch(actAddProduct(res.data))
+    })
+}
+
+export const actAddProduct = (product)=>{
+    return{
+        type:types.ADD_PRODUCT,
+        product
+    }
+}

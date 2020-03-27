@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import callApi from '../../utils/apiCaller'
 import { Link } from 'react-router-dom';
+import * as actions from '../../actions/index'
+import {connect} from 'react-redux'
 
 class ProductActionPage extends Component {
 
@@ -38,13 +40,12 @@ class ProductActionPage extends Component {
         this.props.history.goBack()
       })
     }else{
-    callApi('products',"POST",{
-      name:this.state.name,
-      price:this.state.price,
-      status:this.state.status
-    }).then(res=>{
-      this.props.history.goBack()
+      this.props.onAddProduct({
+        name:this.state.name,
+        price:this.state.price,
+        status:this.state.status
     })
+    this.props.history.goBack()
   }
   }
 
@@ -86,4 +87,10 @@ class ProductActionPage extends Component {
   }
 }
 
-export default ProductActionPage;
+const mapDispatchToProps=(dispatch,props)=>{
+  return{
+    onAddProduct:(product)=>dispatch(actions.actFetchProductsRequest(product))
+  }
+}
+
+export default connect(null,mapDispatchToProps)(ProductActionPage);

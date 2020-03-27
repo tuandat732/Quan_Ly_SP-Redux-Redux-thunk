@@ -10,13 +10,7 @@ class ProductListPage extends Component {
   componentDidMount(){
     this.props.fetchAllProducts()
   }
-
-  onFetchProducts=()=>{
-    callApi('products',"GET",null).then(res=>{
-      this.props.fetchAllProducts()
-    })
-  }
-
+  
   onDelete=(id)=>{
    this.props.onDeleteProduct(id)
   }
