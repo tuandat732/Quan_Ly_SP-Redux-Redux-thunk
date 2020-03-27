@@ -1,0 +1,16 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "xperia xz",
+      "price": "2000",
+      "status": "false"
+    },
+    {
+      "name": "xperia 1",
+      "price": "5000",
+      "status": false,
+      "id": 2
+    }
+  ]
+}
